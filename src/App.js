@@ -1,12 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
+import { CardList } from "./component/card-list/card-list.component";
 import "./App.css";
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
 
     this.state = {
       monsters: [],
+      searchField: "",
     };
   }
 
@@ -19,9 +21,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        {this.state.monsters.map((monster) => (
-          <h1 key={monster.id}>{monster.name}</h1>
-        ))}
+        <input
+          type="search"
+          placeholder="search monsters"
+          onChange={(e) => this.setState({ searchField: e.target.value })}
+        />
+        <CardList monsters={this.state.monsters} />
       </div>
     );
   }
